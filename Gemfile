@@ -51,6 +51,11 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  # All runtime config comes from the UNIX environment
+  # but we use dotenv to store that in files for
+  # development and testing
+  gem "dotenv-rails"
 end
 
 group :development do
