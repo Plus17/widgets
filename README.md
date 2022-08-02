@@ -18,23 +18,3 @@
 ## Production
 * All runtime configuration should be supplied  in the UNIX environment
 * Rails logging uses lograge. `bin/setup help` can tell you how to see this locally
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
