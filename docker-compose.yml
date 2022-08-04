@@ -8,6 +8,7 @@ services:
       - "3000:3000"
     volumes:
       - ./:/app/src
+      - bundle:/usr/local/bundle
     depends_on:
       - postgres
     working_dir: /app/src
@@ -28,4 +29,5 @@ services:
     image: redis:5
 
 volumes:
+  bundle:
   db-volume:
