@@ -1,9 +1,5 @@
 #!/usr/bin/env ruby
 
-def system!(*args)
-  system(*args) || abort("\n== Command #{args} failed ==")
-end
-
 def setup
   log "Installing gems"
   # Only do bundle install if the much-faster # bundle check indicates we need to
@@ -64,7 +60,7 @@ def system!(*args)
   if system(*args)
     log "#{args} succeeded"
   else
-    log "#{args} failed"
+    log "\n== Command #{args} failed =="
     abort
   end
 end
@@ -83,3 +79,4 @@ if ARGV[0] == "help"
 else
   setup
 end
+
