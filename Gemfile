@@ -66,6 +66,8 @@ group :development, :test do
   # but we use dotenv to store that in files for
   # development and testing
   gem "dotenv-rails"
+
+  gem "standard"
 end
 
 group :development do
@@ -77,6 +79,7 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "solargraph"
 end
 
 group :test do
