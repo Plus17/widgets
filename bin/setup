@@ -79,4 +79,3 @@ if ARGV[0] == "help"
 else
   setup
 end
-
