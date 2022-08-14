@@ -75,6 +75,8 @@ group :development, :test do
   gem "dotenv-rails"
 
   gem "standard"
+
+  gem 'erb-formatter'
 end
 
 group :development do
