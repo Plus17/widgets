@@ -4,7 +4,7 @@ module TestSupport
     # useful context and diagnostics when a test is
     # unexpectedly failing
     def with_clues(&block)
-      block.()
+      block.call
     rescue Exception => ex
       puts "[ with_clues ] Test failed: #{ex.message}"
       puts "[ with_clues ] HTML {"
