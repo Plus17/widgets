@@ -12,4 +12,7 @@ class Widget < ApplicationRecord
       last_two: id_as_string[-2..]
     }
   end
+
+  belongs_to :widget_status
+  validates :price_cents, numericality: {less_than_or_equal_to: 10_000_00}
 end
