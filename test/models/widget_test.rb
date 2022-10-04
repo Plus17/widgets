@@ -17,6 +17,7 @@ class WidgetTest < ActiveSupport::TestCase
       price_cents: 10_00
     )
   end
+
   test "valid prices do not trigger the DB constraint" do
     assert_nothing_raised do
       @widget.update_column(
@@ -24,6 +25,7 @@ class WidgetTest < ActiveSupport::TestCase
       )
     end
   end
+
   test "negative prices do trigger the DB constraint" do
     exception = assert_raises do
       @widget.update_column(
@@ -31,5 +33,17 @@ class WidgetTest < ActiveSupport::TestCase
       )
     end
     assert_match(/price_must_be_positive/i, exception.message)
+  end
+
+  test "when the name an empty string, it's normalized to nil" do
+    widget = Widget.new(name: "")
+    widget.validate
+    assert_nil widget.name
+  end
+
+  test "when name is just a lot of spaces, it's normalized to nil" do
+    widget = Widget.new(name: " ")
+    widget.validate
+    assert_nil widget.name
   end
 end
