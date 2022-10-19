@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :widgets, only: [ :show, :index ]
+  resources :widgets, only: [:show, :index, :new, :create]
   resources :widget_ratings, only: [ :create ]
 
   resources :widgets, only: [ :show ] do
