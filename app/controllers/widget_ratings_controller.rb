@@ -4,6 +4,7 @@ class WidgetRatingsController < ApplicationController
       # find the widget
       # update its rating
       # default render
+      redirect_to widget_path(params[:widget_id]), notice: "Thanks for rating!"
     else
       head :bad_request
     end
