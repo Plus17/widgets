@@ -3,7 +3,9 @@ class Widget < ApplicationRecord
 
   validates :name, {presence: true}
   validates :manufacturer_id, {presence: true}
-  validates :price_cents, numericality: {less_than_or_equal_to: 10_000_00}
+  validates :name, {presence: true, length: {minimum: 5}}
+  validates :price_cents, numericality: {less_than_or_equal_to: 10_000_00, greater_than: 0},
+    high_enough_for_legacy_manufacturers: true
 
   belongs_to :manufacturer
   belongs_to :widget_status
