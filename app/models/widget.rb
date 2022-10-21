@@ -11,7 +11,7 @@ class Widget < ApplicationRecord
   belongs_to :widget_status
 
   before_validation do
-    if self.name.blank?
+    if name.blank?
       self.name = nil
     end
   end

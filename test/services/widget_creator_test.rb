@@ -39,14 +39,14 @@ class WidgetCreatorTest < ActiveSupport::TestCase
     }
 
     refute_nil too_short_error,
-    result.widget.errors.full_messages.join(",")
+      result.widget.errors.full_messages.join(",")
   end
 
   test "finance is notified for widgets priced over $7,500" do
     result = @widget_creator.create_widget(Widget.new(
-        name: "Stembolt",
-        price_cents: 7_500_01,
-        manufacturer_id: @manufacturer.id
+      name: "Stembolt",
+      price_cents: 7_500_01,
+      manufacturer_id: @manufacturer.id
     ))
 
     assert result.created?
@@ -55,7 +55,7 @@ class WidgetCreatorTest < ActiveSupport::TestCase
     mail_message = ActionMailer::Base.deliveries.first
 
     assert_equal "finance@example.com", mail_message["to"].to_s
-    assert_match /Stembolt/, mail_message.text_part.to_s
+    assert_match(/Stembolt/, mail_message.text_part.to_s)
   end
 
   test "name, price, and manufacturer are required" do
@@ -93,44 +93,44 @@ class WidgetCreatorTest < ActiveSupport::TestCase
 
   test "price cannot be more than 10,000" do
     result = @widget_creator.create_widget(Widget.new(
-        name: "Stembolt",
-        price_cents: 10_000_01,
-        manufacturer_id: @manufacturer.id
+      name: "Stembolt",
+      price_cents: 10_000_01,
+      manufacturer_id: @manufacturer.id
     ))
 
     refute result.created?
 
     assert result.widget.errors[:price_cents].any? { |message|
-          message =~ /less than or equal to 1000000/i
+      message =~ /less than or equal to 1000000/i
     }, result.widget.errors.full_messages_for(:price_cents)
   end
 
   test "legacy manufacturers cannot have a price under $100" do
     legacy_manufacturer = FactoryBot.create(:manufacturer,
-          created_at: DateTime.new(2010,1,1) - 1.day)
+      created_at: DateTime.new(2010, 1, 1) - 1.day)
 
     result = @widget_creator.create_widget(Widget.new(
-          name: "Stembolt",
-          price_cents: 99_00,
-          manufacturer_id: legacy_manufacturer.id
+      name: "Stembolt",
+      price_cents: 99_00,
+      manufacturer_id: legacy_manufacturer.id
     ))
 
     refute result.created?
 
     assert result.widget.errors[:price_cents].any? { |message|
-          message =~ /< \$100.*legacy/i
+      message =~ /< \$100.*legacy/i
     }, result.widget.errors.full_messages_for(:price_cents)
   end
 
   test "email admin staff for widgets on new manufacturers " do
     new_manufacturer = FactoryBot.create(:manufacturer,
-          name: "Cyberdyne Systems",
-          created_at: 59.days.ago)
+      name: "Cyberdyne Systems",
+      created_at: 59.days.ago)
 
     result = @widget_creator.create_widget(Widget.new(
-          name: "Stembolt",
-          price_cents: 99_00,
-          manufacturer_id: new_manufacturer.id
+      name: "Stembolt",
+      price_cents: 99_00,
+      manufacturer_id: new_manufacturer.id
     ))
 
     assert result.created?
@@ -138,7 +138,7 @@ class WidgetCreatorTest < ActiveSupport::TestCase
     assert_equal 1, ActionMailer::Base.deliveries.size
     mail_message = ActionMailer::Base.deliveries.first
     assert_equal "admin@example.com", mail_message["to"].to_s
-    assert_match /Stembolt/, mail_message.text_part.to_s
-    assert_match /Cyberdyne Systems/, mail_message.text_part.to_s
+    assert_match(/Stembolt/, mail_message.text_part.to_s)
+    assert_match(/Cyberdyne Systems/, mail_message.text_part.to_s)
   end
 end

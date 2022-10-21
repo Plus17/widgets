@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :widgets, only: [:show, :index, :new, :create]
-  resources :widget_ratings, only: [ :create ]
+  resources :widget_ratings, only: [:create]
 
-  resources :widgets, only: [ :show ] do
-    resources :ratings, only: [ :create ]
+  resources :widgets, only: [:show] do
+    resources :ratings, only: [:create]
   end
 
   namespace :customer_service do
-    resources :widgets, only: [ :show, :update, :destroy ]
+    resources :widgets, only: [:show, :update, :destroy]
   end
 
   get "manufacturer/:id", to: "manufacturers#show"

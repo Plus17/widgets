@@ -9,5 +9,4 @@ class AdminMailerTest < ActionMailer::TestCase
     assert_equal ["from@example.com"], mail.from
     assert_match widget.name, mail.body.encoded
   end
-
 end
