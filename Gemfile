@@ -65,6 +65,9 @@ gem "bundler-audit"
 # traditional one-line-per-event format
 gem "lograge"
 
+# Sidekiq handles background jobs
+gem "sidekiq"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -85,6 +88,9 @@ group :development, :test do
   # We use Faker to generate values for attributes
   # in each factory
   gem "faker"
+
+  # Foreman runs all processes for local development
+  gem "foreman"
 end
 
 group :development do

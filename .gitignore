@@ -28,6 +28,9 @@ config/master.key
 # TODO Comment out this rule if environment variables can be committed
 .env
 
+# Procfile.dev is generated, so should not be checked in
+Procfile.dev
+
 # .env.*.local files are where we put actual
 # secrets we need for dev and test, so
 # we really don't want this in version control
