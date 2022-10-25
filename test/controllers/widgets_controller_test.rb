@@ -9,8 +9,9 @@ class WidgetsControllerTest < ActionDispatch::IntegrationTest
       widget: {
         name: "New Widget",
         price_cents: "123.45",
-        manufacturer_id: manufacturer.id.to_s,
-    } }
+        manufacturer_id: manufacturer.id.to_s
+      }
+    }
 
     widget = Widget.last
     confidence_check do

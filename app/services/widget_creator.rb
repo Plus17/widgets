@@ -27,6 +27,7 @@ class WidgetCreator
       AdminMailer.new_widget_from_new_manufacturer(widget).deliver_now
     end
   end
+
   class Result
     attr_reader :widget
 
